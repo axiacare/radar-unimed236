@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RADAR - Canvas View</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --csv-blue: #196396;
+      --csv-green: #2DBF7F;
+      --csv-dark: #1b1e24;
+      --csv-light: #f4f6f8;
+      --highlight-color: #2DBF7F;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, var(--csv-light) 0%, #e8ecf0 100%);
+      color: var(--csv-dark);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      background-color: #fff;
+      padding: 40px;
+      box-shadow: 0 4px 24px rgba(25, 99, 150, 0.12);
+      border-radius: 16px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--csv-light);
+    }
+
+    .logo {
+      max-width: 200px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--csv-blue);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #666;
+    }
+
+    .highlight-letter {
+      color: var(--csv-green);
+      font-weight: 700;
+    }
+
+    .info-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      background: linear-gradient(135deg, var(--csv-blue) 0%, #1a4f7a 100%);
+      padding: 20px 24px;
+      border-radius: 12px;
+      margin-bottom: 32px;
+    }
+
+    .info-item {
+      color: #fff;
+    }
+
+    .info-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+      margin-bottom: 4px;
+    }
+
+    .info-value {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    th {
+      background: linear-gradient(135deg, var(--csv-blue) 0%, #1a4f7a 100%);
+      color: #fff;
+      padding: 16px 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    td {
+      padding: 20px;
+      vertical-align: top;
+      width: 50%;
+      border-bottom: 1px solid var(--csv-light);
+      background-color: #fff;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--csv-blue);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--csv-green);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      line-height: 1.5;
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      background-color: var(--csv-green);
+      border-radius: 50%;
+    }
+
+    li:last-child {
+      margin-bottom: 0;
+    }
+
+    .empty-item {
+      color: #999;
+      font-style: italic;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 2px solid var(--csv-light);
+      text-align: center;
+    }
+
+    .footer-brand {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand a {
+      color: var(--csv-blue);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .footer-brand a:hover {
+      color: var(--csv-green);
+    }
+
+    .footer-copyright {
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: #fff;
+      }
+      .container {
+        box-shadow: none;
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      th, td {
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663235784054/IBYYRjJYVDBrnatV.png" class="logo" alt="AxiaCare Logo">
+      <h1>RADAR</h1>
+      <h2><span class="highlight-letter">R</span>evisão <span class="highlight-letter">Á</span>gil de <span class="highlight-letter">D</span>emandas, <span class="highlight-letter">A</span>ções e <span class="highlight-letter">R</span>eflexões</h2>
+    </div>
+    
+    <div class="info-bar">
+      <div class="info-item">
+        <div class="info-label">Data</div>
+        <div class="info-value">02/02/2025</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Equipe</div>
+        <div class="info-value">Escritório de Valor</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Avaliador</div>
+        <div class="info-value">Dr. Guilherme Thomé</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Ciclo</div>
+        <div class="info-value">Semanal</div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Abertura</th>
+          <th>Encaminhamentos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="section-header"><span class="highlight-letter">R</span>elatos Relevantes</div>
+            <ul><li>Discussão sobre o fluxo de atendimento no PA</li><li>Revisão dos indicadores de qualidade do mês</li><li>Feedback positivo da equipe de enfermagem</li></ul>
+          </td>
+          <td>
+            <div class="section-header"><span class="highlight-letter">R</span>egistros</div>
+            <ul><li>Ata da reunião registrada no sistema</li><li>Indicadores atualizados no dashboard</li><li>Feedback documentado para RH</li></ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="section-header"><span class="highlight-letter">A</span>bertos Importantes</div>
+            <ul><li>Pendência de contratação de anestesista</li><li>Equipamento de RNM aguardando manutenção</li><li>Processo de acreditação em andamento</li></ul>
+          </td>
+          <td>
+            <div class="section-header"><span class="highlight-letter">A</span>ções</div>
+            <ul><li>Agendar entrevista com candidato até sexta</li><li>Solicitar orçamento para peça de reposição</li><li>Preparar documentação para auditoria</li></ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="section-header"><span class="highlight-letter">D</span>irecionadores de Impacto</div>
+            <ul><li>Foco em redução de tempo de espera no PA</li><li>Priorizar linha de cuidado de idosos</li><li>Implementar protocolo de alta segura</li></ul>
+          </td>
+          <td>
+            <div class="section-header"><span class="highlight-letter">D</span>efinições</div>
+            <ul><li>Meta: reduzir tempo de espera em 20%</li><li>Lançar programa até março</li><li>Protocolo aprovado pela DT</li></ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="section-header"><span class="highlight-letter">A</span>genda e Articulações</div>
+            <ul><li>Reunião com diretoria dia 10/02</li><li>Workshop de liderança dia 15/02</li><li>Visita técnica ao novo equipamento</li></ul>
+          </td>
+          <td>
+            <div class="section-header"><span class="highlight-letter">A</span>linhamentos</div>
+            <ul><li>Pauta alinhada com superintendência</li><li>Convites enviados para gestores</li><li>Agendamento confirmado com fornecedor</li></ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="section-header"><span class="highlight-letter">R</span>iscos e Reflexões</div>
+            <ul><li>Necessidade de melhorar comunicação interna</li><li>Avaliar impacto das mudanças no fluxo</li><li>Considerar expansão da equipe</li></ul>
+          </td>
+          <td>
+            <div class="section-header"><span class="highlight-letter">R</span>ecomendações</div>
+            <ul><li>Implementar canal de comunicação direta</li><li>Criar indicadores de acompanhamento</li><li>Elaborar plano de contratação</li></ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer">
+      <div class="footer-brand">
+        <a href="https://grupocsv.com">Grupo CSV</a>
+        <a href="https://axcare.com.br">AxiaCare</a>
+        <a href="https://thera.tech">Thera</a>
+        <a href="https://medvalor.med.br">MedValor</a>
+      </div>
+      <div class="footer-copyright">
+        &copy; 2025 Grupo CSV | Cuidados em Saúde com Valor | Todos os direitos reservados
+      </div>
+    </div>
+  </div>
+</body>
+</html>
