@@ -19,7 +19,20 @@ Este repositório contém a infraestrutura de documentação e visualização do
 | **Visualização** | HTML/CSS estático | Canvas View de alta definição |
 | **Hospedagem** | GitHub Pages | Publicação automática |
 | **DNS** | Cloudflare | Domínio customizado |
-| **CI/CD** | GitHub Actions | Deploy automatizado |
+
+---
+
+## Ecossistema Grupo CSV
+
+O Grupo CSV (Cuidados em Saúde com Valor) é um ecossistema estratégico que integra gestão, educação e tecnologia para entregar valor sustentável em saúde.
+
+### A Tríade
+
+| Braço | Função | Foco | Site |
+|:---|:---|:---|:---|
+| **AxiaCare®** | Gestão & Estratégia | Consultoria, Governança Clínica, Operação | [axcare.com.br](https://axcare.com.br) |
+| **MedValor®** | Educação & Cultura | Formação de Lideranças, Mudança de Mindset | [medvalor.com.br](https://medvalor.com.br) |
+| **TheraTech®** | Tecnologia & IA | Desenvolvimento de Software, Inteligência de Dados | [thera.tech](https://thera.tech) |
 
 ---
 
@@ -27,9 +40,6 @@ Este repositório contém a infraestrutura de documentação e visualização do
 
 ```
 radar-unimed236/
-├── .github/
-│   └── workflows/
-│       └── deploy.yml          # GitHub Actions para deploy automático
 ├── docs/
 │   ├── metodologia/
 │   │   └── RADAR.md            # Documentação completa do método
@@ -38,7 +48,6 @@ radar-unimed236/
 │   └── integracao/
 │       └── MANUS.md            # Integração com Manus AI
 ├── public/
-│   ├── index.html              # Canvas View principal
 │   ├── css/
 │   │   └── styles.css          # Estilos do Canvas View
 │   ├── js/
@@ -49,6 +58,8 @@ radar-unimed236/
 │   └── config.json             # Configuração do cliente
 ├── templates/
 │   └── canvas_template.html    # Template base para geração
+├── index.html                  # Canvas View principal
+├── CNAME                       # Domínio customizado
 └── README.md                   # Este arquivo
 ```
 
@@ -69,7 +80,7 @@ radar-unimed236/
 
 ### Unihealth GV
 
-Hospital gerido pelo ICDS (Instituto de Ciências da Saúde) vinculado à operadora.
+Hospital gerido pelo ICDS (Instituto de Cooperação para o Desenvolvimento da Saúde) vinculado à operadora.
 
 ---
 
@@ -138,7 +149,7 @@ A skill `radar-export` no Manus é responsável por:
 2. **Estruturar** os dados em formato JSON
 3. **Gerar** o Canvas View HTML
 4. **Fazer commit** no repositório GitHub
-5. **Disparar** o deploy automático via GitHub Actions
+5. **Publicar** automaticamente via GitHub Pages
 
 ### Configuração Multi-Tenant
 
@@ -162,19 +173,20 @@ O sistema suporta múltiplos clientes através do arquivo `data/config.json`:
 
 ## Deploy
 
-### GitHub Actions
+### GitHub Pages (Deploy from Branch)
 
-O deploy é automatizado via GitHub Actions. A cada push na branch `main`, o workflow:
+O deploy é realizado automaticamente pelo GitHub Pages a partir da branch `main`. A cada push, o conteúdo da raiz do repositório é publicado no domínio customizado.
 
-1. Faz checkout do código
-2. Copia arquivos para a pasta de publicação
-3. Publica no GitHub Pages
+**Configuração:**
+- **Source**: Deploy from a branch
+- **Branch**: main
+- **Folder**: / (root)
 
 ### Domínio Customizado
 
 - **URL**: https://radar-unimed236.axcare.com.br
 - **DNS**: CNAME apontando para `axiacare.github.io`
-- **SSL**: Gerenciado pelo GitHub Pages
+- **SSL**: Gerenciado pelo Cloudflare/GitHub Pages
 
 ---
 
@@ -209,6 +221,11 @@ Proprietário. © 2025 Grupo CSV | AxiaCare. Todos os direitos reservados.
 
 ## Contato
 
-- **AxiaCare**: [axcare.com.br](https://axcare.com.br)
-- **Grupo CSV**: [grupocsv.com](https://grupocsv.com)
-- **Email**: contato@grupocsv.com
+| Marca | Site | Descrição |
+|:---|:---|:---|
+| **Grupo CSV** | [grupocsv.com](https://grupocsv.com) | Ecossistema de Valor em Saúde |
+| **AxiaCare®** | [axcare.com.br](https://axcare.com.br) | Gestão e Consultoria |
+| **MedValor®** | [medvalor.com.br](https://medvalor.com.br) | Conteúdo e Ensino |
+| **TheraTech®** | [thera.tech](https://thera.tech) | Tecnologia e Desenvolvimento |
+
+**Email**: contato@grupocsv.com
