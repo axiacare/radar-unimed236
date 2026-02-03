@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RADAR | Semana 05 | Escritório de Valor em Saúde</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --csv-blue: #196396;
+      --csv-green: #2DBF7F;
+      --csv-dark: #1b1e24;
+      --csv-light: #f4f6f8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, var(--csv-light) 0%, #e8ecf0 100%);
+      color: var(--csv-dark);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      background-color: #fff;
+      padding: 40px;
+      box-shadow: 0 4px 24px rgba(25, 99, 150, 0.12);
+      border-radius: 16px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--csv-light);
+    }
+
+    .logo {
+      max-width: 200px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--csv-blue);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #666;
+    }
+
+    h2 strong {
+      font-weight: 700;
+      color: var(--csv-blue);
+    }
+
+    .info-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      background: linear-gradient(135deg, var(--csv-blue) 0%, #1a4f7a 100%);
+      padding: 20px 24px;
+      border-radius: 12px;
+      margin-bottom: 32px;
+    }
+
+    .info-item {
+      color: #fff;
+    }
+
+    .info-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+      margin-bottom: 4px;
+    }
+
+    .info-value {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    th {
+      background: linear-gradient(135deg, var(--csv-blue) 0%, #1a4f7a 100%);
+      color: #fff;
+      padding: 16px 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    td {
+      padding: 20px;
+      vertical-align: top;
+      width: 50%;
+      border-bottom: 1px solid var(--csv-light);
+      background-color: #fff;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--csv-blue);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--csv-green);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      line-height: 1.5;
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      background-color: var(--csv-green);
+      border-radius: 50%;
+    }
+
+    li:last-child {
+      margin-bottom: 0;
+    }
+
+    .empty-item {
+      color: #999;
+      font-style: italic;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 2px solid var(--csv-light);
+      text-align: center;
+    }
+
+    .footer-brand {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand a {
+      color: var(--csv-blue);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .footer-brand a:hover {
+      color: var(--csv-green);
+    }
+
+    .footer-copyright {
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: var(--csv-blue);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      color: var(--csv-green);
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: #fff;
+      }
+      .container {
+        box-shadow: none;
+        padding: 20px;
+      }
+      .back-link {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      th, td {
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">&larr; Voltar para Central RADAR</a>
+    
+    <div class="header">
+      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663235784054/IBYYRjJYVDBrnatV.png" class="logo" alt="AxiaCare Logo">
+      <h1>RADAR</h1>
+      <h2><strong>R</strong>evisão <strong>A</strong>gil de <strong>D</strong>emandas, <strong>A</strong>ções e <strong>R</strong>eflexões</h2>
+    </div>
+    
+    <div class="info-bar">
+      <div class="info-item">
+        <div class="info-label">Data</div>
+        <div class="info-value">02/02/2026</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Time</div>
+        <div class="info-value">Escritório de Valor em Saúde</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Localizador</div>
+        <div class="info-value">LR-EVS-05-26</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Ciclo</div>
+        <div class="info-value">Semana 05</div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Abertura</th>
+          <th>Encaminhamentos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="section-header"><strong>R</strong>elatos Relevantes</div>
+            <ul><li>Ajustes Agenda das Colonoscopias</li><li>Chega Ressectoscópio</li><li>Substituições Empunhaduras Pinças Definitivas Elfa</li></ul>
+          </td>
+          <td>
+            <div class="section-header"><strong>R</strong>egistros</div>
+            <ul><li>Confirmado a alteração para exames exclusivamente pela manhã a partir de abril de 2026.</li><li>Confirmado o recebimento do equipamento. Está sendo gerada documentação de treinamento e termos de responsabilidade ao corpo clínico.</li><li>Confirmada a chegada da quantidade suficiente para todas as substituições. Aparentemente o material é, de fato, mais robusto. Previsão de conclusão ainda hoje.</li></ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="section-header"><strong>A</strong>bertos Importantes</div>
+            <ul><li>Reagendar Reunião Wilson (Cir. Pediátrica)</li><li>Reunião da Retrospectiva da Governança Clínica 2025 + Apresentação LC Fratura Fêmur e Outros Novos Projetos Relevantes + Alvos Assistenciais 2026</li></ul>
+          </td>
+          <td>
+            <div class="section-header"><strong>A</strong>ções</div>
+            <ul><li>Considerando a agenda de fechamento (ICDS) a partir de quarta-feira, pendente reagendarmos com o médico.</li><li>Agendar prévia da apresentação antes para ajustes finos. Fase 1 - Alta direção (incluir Alysson / Médicos diretamente envolvidos). Fase 2 - Lideranças. Fase 3 - Corpo Clínico.</li></ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="section-header"><strong>D</strong>irecionadores de Impacto</div>
+            <ul><li>Atraso Pagamentos Médicos</li><li>Monitor Multiparamétrico RNM</li></ul>
+          </td>
+          <td>
+            <div class="section-header"><strong>D</strong>efinições</div>
+            <ul><li>O Ciclo 02 até o momento não foi repassado aos profissionais, o que tem gerado reclamações por parte dos não cooperados. Daniel já fez contato com Edelimar que ficou de verificar internamente.</li><li>A opção melhor avaliada até então é a aquisição do equipamento marca Phillips. O valor total de R$ 290.024,97 foi apresentado à Edelimar / Rommel pelo Daniel.</li></ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="section-header"><strong>A</strong>genda e Articulações</div>
+            <ul><li>Nova Rodada Teller - Segunda 18:30h</li><li>ICDS - Quarta-feira</li><li>UniBlue - Quarta-feira 14:00h</li></ul>
+          </td>
+          <td>
+            <div class="section-header"><strong>A</strong>linhamentos</div>
+            <ul><li>Pedro Santoro quer agilizar o contato de onboarding com os novos médicos. Daniel irá escutar a proposta e definir os próximos passos.</li><li>Pautas Fernando Manhã: Atualizações Pinças Permanente Elfa / Distrato Santalmas.</li><li>Conforme direcionador.</li></ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="section-header"><strong>R</strong>iscos e Reflexões</div>
+            <ul><li>Espaçamento do Acompanhamento Superint. Médico e Diretoria Técnica</li><li>Abordagem com Corporativo - Cirurgia Geral e Obstetrícia</li><li>Gerência Médica e Coordenação PA</li></ul>
+          </td>
+          <td>
+            <div class="section-header"><strong>R</strong>ecomendações</div>
+            <ul><li>Considerando o amadurecimento da governança clínica, será espaçado para 15 em 15 dias os encontros semanais específicos com a DT.</li><li>Recomendado ativar a conversa com Dr. Fernando sobre as especialidades na quarta-feira.</li><li>Recomendado a abordagem sistematizada no encontro previsto para tarde de hoje.</li></ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer">
+      <div class="footer-brand">
+        <a href="https://grupocsv.com">Grupo CSV</a>
+        <a href="https://axcare.com.br">AxiaCare</a>
+        <a href="https://thera.tech">Thera</a>
+        <a href="https://medvalor.med.br">MedValor</a>
+      </div>
+      <div class="footer-copyright">
+        &copy; 2026 Grupo CSV | Cuidados em Saúde com Valor | Todos os direitos reservados
+      </div>
+    </div>
+  </div>
+</body>
+</html>

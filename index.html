@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RADAR - Canvas View</title>
+  <title>Central RADAR | Unimed Governador Valadares</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -11,7 +11,6 @@
       --csv-green: #2DBF7F;
       --csv-dark: #1b1e24;
       --csv-light: #f4f6f8;
-      --highlight-color: #2DBF7F;
     }
 
     * {
@@ -31,17 +30,15 @@
     .container {
       max-width: 1200px;
       margin: auto;
-      background-color: #fff;
-      padding: 40px;
-      box-shadow: 0 4px 24px rgba(25, 99, 150, 0.12);
-      border-radius: 16px;
     }
 
     .header {
       text-align: center;
-      margin-bottom: 32px;
-      padding-bottom: 24px;
-      border-bottom: 2px solid var(--csv-light);
+      margin-bottom: 48px;
+      padding: 40px;
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(25, 99, 150, 0.12);
     }
 
     .logo {
@@ -57,125 +54,133 @@
       margin-bottom: 8px;
     }
 
-    h2 {
+    .subtitle {
       font-size: 1.1rem;
       font-weight: 500;
       color: #666;
+      margin-bottom: 16px;
     }
 
-    .highlight-letter {
-      color: var(--csv-green);
+    .subtitle strong {
       font-weight: 700;
+      color: var(--csv-blue);
     }
 
-    .info-bar {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
+    .client-badge {
+      display: inline-block;
       background: linear-gradient(135deg, var(--csv-blue) 0%, #1a4f7a 100%);
-      padding: 20px 24px;
-      border-radius: 12px;
-      margin-bottom: 32px;
-    }
-
-    .info-item {
       color: #fff;
-    }
-
-    .info-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      opacity: 0.8;
-      margin-bottom: 4px;
-    }
-
-    .info-value {
-      font-size: 1rem;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 0.9rem;
       font-weight: 600;
     }
 
-    table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    .team-section {
+      margin-bottom: 40px;
     }
 
-    th {
-      background: linear-gradient(135deg, var(--csv-blue) 0%, #1a4f7a 100%);
-      color: #fff;
-      padding: 16px 20px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    td {
-      padding: 20px;
-      vertical-align: top;
-      width: 50%;
-      border-bottom: 1px solid var(--csv-light);
-      background-color: #fff;
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    .section-header {
+    .team-header {
       display: flex;
       align-items: center;
-      gap: 0;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid var(--csv-green);
+    }
+
+    .team-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--csv-blue);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
       font-size: 1rem;
+    }
+
+    .team-name {
+      font-size: 1.5rem;
       font-weight: 700;
       color: var(--csv-blue);
+    }
+
+    .team-count {
+      font-size: 0.85rem;
+      color: #888;
+      font-weight: 500;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(25, 99, 150, 0.15);
+    }
+
+    .card-semana {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--csv-blue);
+      margin-bottom: 8px;
+    }
+
+    .card-data {
+      font-size: 0.9rem;
+      color: #666;
       margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid var(--csv-green);
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
+    .card-localizador {
+      display: inline-block;
+      background-color: var(--csv-light);
+      color: var(--csv-blue);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-family: monospace;
     }
 
-    li {
-      position: relative;
-      padding-left: 20px;
-      margin-bottom: 10px;
-      line-height: 1.5;
-      font-size: 0.95rem;
-      color: #444;
+    .card-arrow {
+      float: right;
+      color: var(--csv-green);
+      font-size: 1.2rem;
+      margin-top: -24px;
     }
 
-    li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 8px;
-      width: 8px;
-      height: 8px;
-      background-color: var(--csv-green);
-      border-radius: 50%;
-    }
-
-    li:last-child {
-      margin-bottom: 0;
-    }
-
-    .empty-item {
-      color: #999;
-      font-style: italic;
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      background-color: #fff;
+      border-radius: 12px;
+      color: #888;
     }
 
     .footer {
-      margin-top: 40px;
-      padding-top: 24px;
-      border-top: 2px solid var(--csv-light);
+      margin-top: 60px;
+      padding: 24px;
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(25, 99, 150, 0.12);
       text-align: center;
     }
 
@@ -205,26 +210,15 @@
       color: #888;
     }
 
-    @media print {
-      body {
-        padding: 0;
-        background: #fff;
-      }
-      .container {
-        box-shadow: none;
-        padding: 20px;
-      }
-    }
-
     @media (max-width: 768px) {
-      .container {
-        padding: 20px;
+      .header {
+        padding: 24px;
       }
       h1 {
         font-size: 1.8rem;
       }
-      th, td {
-        padding: 12px;
+      .cards-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -233,89 +227,52 @@
   <div class="container">
     <div class="header">
       <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663235784054/IBYYRjJYVDBrnatV.png" class="logo" alt="AxiaCare Logo">
-      <h1>RADAR</h1>
-      <h2><span class="highlight-letter">R</span>evisão <span class="highlight-letter">Á</span>gil de <span class="highlight-letter">D</span>emandas, <span class="highlight-letter">A</span>ções e <span class="highlight-letter">R</span>eflexões</h2>
+      <h1>Central RADAR</h1>
+      <p class="subtitle"><strong>R</strong>evisão <strong>A</strong>gil de <strong>D</strong>emandas, <strong>A</strong>ções e <strong>R</strong>eflexões</p>
+      <span class="client-badge">Unimed Governador Valadares</span>
     </div>
+
     
-    <div class="info-bar">
-      <div class="info-item">
-        <div class="info-label">Data</div>
-        <div class="info-value">02/02/2026</div>
+    <div class="team-section">
+      <div class="team-header">
+        <div class="team-icon">EVS</div>
+        <div>
+          <div class="team-name">Escritório de Valor em Saúde</div>
+          <div class="team-count">1 RADAR(s)</div>
+        </div>
       </div>
-      <div class="info-item">
-        <div class="info-label">Equipe</div>
-        <div class="info-value">Unihealth GV</div>
-      </div>
-      <div class="info-item">
-        <div class="info-label">Avaliador</div>
-        <div class="info-value">Superintendência Médica</div>
-      </div>
-      <div class="info-item">
-        <div class="info-label">Ciclo</div>
-        <div class="info-value">Semana 05</div>
+      <div class="cards-grid">
+        
+        <a href="LR-EVS-05-26.html" class="card">
+          <div class="card-semana">Semana 05 (02/02)</div>
+          <div class="card-data">02/02/2026</div>
+          <span class="card-localizador">LR-EVS-05-26</span>
+          <span class="card-arrow">&rarr;</span>
+        </a>
+
       </div>
     </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Abertura</th>
-          <th>Encaminhamentos</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <div class="section-header"><span class="highlight-letter">R</span>elatos Relevantes</div>
-            <ul><li>Ajustes Agenda das Colonoscopias</li><li>Chega Ressectoscópio</li><li>Substituições Empunhaduras Pinças Definitivas Elfa</li></ul>
-          </td>
-          <td>
-            <div class="section-header"><span class="highlight-letter">R</span>egistros</div>
-            <ul><li>Confirmado a alteração para exames exclusivamente pela manhã a partir de abril de 2026.</li><li>Confirmado o recebimento do equipamento. Está sendo gerada documentação de treinamento e termos de responsabilidade ao corpo clínico.</li><li>Confirmada a chegada da quantidade suficiente para todas as substituições. Aparentemente o material é, de fato, mais robusto. Previsão de conclusão ainda hoje.</li></ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="section-header"><span class="highlight-letter">A</span>bertos Importantes</div>
-            <ul><li>Reagendar Reunião Wilson (Cir. Pediátrica)</li><li>Reunião da Retrospectiva da Governança Clínica 2025 + Apresentação LC Fratura Fêmur e Outros Novos Projetos Relevantes + Alvos Assistenciais 2026</li></ul>
-          </td>
-          <td>
-            <div class="section-header"><span class="highlight-letter">A</span>ções</div>
-            <ul><li>Considerando a agenda de fechamento (ICDS) a partir de quarta-feira, pendente reagendarmos com o médico.</li><li>Agendar prévia da apresentação antes para ajustes finos. Fase 1 - Alta direção (incluir Alysson / Médicos diretamente envolvidos). Fase 2 - Lideranças. Fase 3 - Corpo Clínico.</li></ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="section-header"><span class="highlight-letter">D</span>irecionadores de Impacto</div>
-            <ul><li>Atraso Pagamentos Médicos</li><li>Monitor Multiparamétrico RNM</li></ul>
-          </td>
-          <td>
-            <div class="section-header"><span class="highlight-letter">D</span>efinições</div>
-            <ul><li>O Ciclo 02 até o momento não foi repassado aos profissionais, o que tem gerado reclamações por parte dos não cooperados. Daniel já fez contato com Edelimar que ficou de verificar internamente. Ainda assim, o assunto será abordado junto à Diretoria Executiva. Mencionado ainda o atraso pontual do Ciclo 01 pago em janeiro (Competência dezembro/25).</li><li>A opção melhor avaliada até então é a aquisição do equipamento marca Phillips. O valor total de R$ 290.024,97 foi apresentado à Edelimar / Rommel pelo Daniel. De antemão, foi solicitado para verificar-se condições de parcelamento. Retorno da Phillips informando que devido à saldo em aberto (Unimed) com a empresa, não seria possível. Além disso, apresentaram prazo relativamente longo (120 dias) e caracterizado como estimativa. Daniel irá verificar com Paulo Santos sobre o saldo e atualizar Edelimar.</li></ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="section-header"><span class="highlight-letter">A</span>genda e Articulações</div>
-            <ul><li>Nova Rodada Teller - Segunda 18:30h</li><li>ICDS - Quarta-feira</li><li>UniBlue - Quarta-feira 14:00h</li></ul>
-          </td>
-          <td>
-            <div class="section-header"><span class="highlight-letter">A</span>linhamentos</div>
-            <ul><li>Pedro Santoro quer agilizar o contato de onboarding com os novos médicos. Daniel irá escutar a proposta e definir os próximos passos.</li><li>Pautas Fernando Manhã: Atualizações Pinças Permanente Elfa / Distrato Santalmas. Proposta Recebida Portfólio "David Medical" (Instrumentais Cirurgia). Conversa sobre Metas Contratuais (UGV). Linha de Cuidado Terapias de Alto Custo (Alinhamento Fórum Intra). Formalização (Presencial) Orçamento Médico. Trilhas de Atendimento PA (Visão da interface com a Rede Externa). Atualização Centro de Infusões.</li><li>Conforme direcionador.</li></ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="section-header"><span class="highlight-letter">R</span>iscos e Reflexões</div>
-            <ul><li>Espaçamento do Acompanhamento Superint. Médico e Diretoria Técnica</li><li>Abordagem com Corporativo - Cirurgia Geral e Obstetrícia</li><li>Gerência Médica e Coordenação PA</li></ul>
-          </td>
-          <td>
-            <div class="section-header"><span class="highlight-letter">R</span>ecomendações</div>
-            <ul><li>Considerando o amadurecimento da governança clínica, será espaçado para 15 em 15 dias os encontros semanais específicos com a DT. Demandas pontuais continuam sendo tratadas normalmente no dia a dia. O horário vago criado será destinado às frentes de Auditoria / Central de Guias, conjuntamente à Camili.</li><li>Recomendado ativar a conversa com Dr. Fernando sobre as especialidades na quarta-feira para ser discutida na outra semana (PE).</li><li>Recomendado a abordagem sistematizada no encontro previsto para tarde de hoje.</li></ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="team-section">
+      <div class="team-header">
+        <div class="team-icon">HU</div>
+        <div>
+          <div class="team-name">Hospital Unimed Governador Valadares</div>
+          <div class="team-count">1 RADAR(s)</div>
+        </div>
+      </div>
+      <div class="cards-grid">
+        
+        <a href="LR-HUGV-05-26.html" class="card">
+          <div class="card-semana">Semana 05 (02/02)</div>
+          <div class="card-data">02/02/2026</div>
+          <span class="card-localizador">LR-HUGV-05-26</span>
+          <span class="card-arrow">&rarr;</span>
+        </a>
+
+      </div>
+    </div>
+
 
     <div class="footer">
       <div class="footer-brand">
@@ -325,7 +282,7 @@
         <a href="https://medvalor.med.br">MedValor</a>
       </div>
       <div class="footer-copyright">
-        &copy; 2025 Grupo CSV | Cuidados em Saúde com Valor | Todos os direitos reservados
+        &copy; 2026 Grupo CSV | Cuidados em Saúde com Valor | Todos os direitos reservados
       </div>
     </div>
   </div>
