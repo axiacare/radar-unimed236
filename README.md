@@ -36,31 +36,44 @@ O Grupo CSV (Cuidados em Saúde com Valor) é um ecossistema estratégico que in
 
 ---
 
+## Estrutura de URLs (Localizador)
+
+Cada RADAR é identificado por um **Localizador** único, gerado automaticamente no Notion:
+
+```
+LR-{Time}-{Semana}-{Ano}
+```
+
+| Componente | Descrição | Exemplo |
+|:---|:---|:---|
+| `LR` | Prefixo fixo (Localizador RADAR) | `LR` |
+| `Time` | Código do time | `EVS`, `HUGV`, `Direx` |
+| `Semana` | Número da semana (2 dígitos) | `05` |
+| `Ano` | Ano (2 dígitos) | `26` |
+
+### Exemplos de URLs
+
+| Time | Localizador | URL |
+|:---|:---|:---|
+| Escritório de Valor em Saúde | `LR-EVS-05-26` | `radar-unimed236.axcare.com.br/LR-EVS-05-26.html` |
+| Hospital Unimed GV | `LR-HUGV-05-26` | `radar-unimed236.axcare.com.br/LR-HUGV-05-26.html` |
+| Diretoria Executiva | `LR-Direx-05-26` | `radar-unimed236.axcare.com.br/LR-Direx-05-26.html` |
+
+---
+
 ## Estrutura do Repositório
 
 ```
-radar-unimed236/
-├── docs/
-│   ├── metodologia/
-│   │   └── RADAR.md            # Documentação completa do método
-│   ├── notion/
-│   │   └── INTEGRACAO.md       # Guia de integração com Notion
-│   └── integracao/
-│       └── MANUS.md            # Integração com Manus AI
-├── public/
-│   ├── css/
-│   │   └── styles.css          # Estilos do Canvas View
-│   ├── js/
-│   │   └── main.js             # Scripts (se necessário)
-│   └── assets/
-│       └── logos/              # Logos e imagens
-├── data/
-│   └── config.json             # Configuração do cliente
-├── templates/
-│   └── canvas_template.html    # Template base para geração
-├── index.html                  # Canvas View principal
-├── CNAME                       # Domínio customizado
-└── README.md                   # Este arquivo
+radar-unimed236.axcare.com.br/
+├── index.html              # Portal com cards de todos os RADARs por Time
+├── LR-EVS-05-26.html       # Canvas View EVS Semana 05/2026
+├── LR-HUGV-05-26.html      # Canvas View HUGV Semana 05/2026
+├── LR-EVS-04-26.html       # Canvas View EVS Semana 04/2026
+├── CNAME                   # Domínio customizado
+├── README.md               # Este arquivo
+├── docs/                   # Documentação adicional
+├── data/                   # Configuração do cliente
+└── public/                 # Assets estáticos
 ```
 
 ---
@@ -215,7 +228,7 @@ O deploy é realizado automaticamente pelo GitHub Pages a partir da branch `main
 
 ## Licença
 
-Proprietário. © 2025 Grupo CSV | AxiaCare. Todos os direitos reservados.
+Proprietário. © 2026 Grupo CSV | AxiaCare. Todos os direitos reservados.
 
 ---
 
